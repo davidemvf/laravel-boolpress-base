@@ -7,6 +7,7 @@
     <p>Author: {{$post -> author}}</p>
     @foreach ($post -> tags as $tag)
       <p>#{{$tag -> name}}</p>
+      <a href="{{ route('tag.show', $tag -> id) }}">Show by tag</a>
     @endforeach
   </div>
 @endsection

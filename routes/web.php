@@ -22,3 +22,4 @@ Route::get('/category/{id}', 'PostController@show') -> name('category.show');
 Route::get('/post/{id}', 'showPostController@show') -> name('post.show');
 Route::get('/post/{id}/edit', 'PostController@edit') -> name('post.edit');
 Route::post('post/{id}/update', 'PostController@update') -> name('post.update');
+Route::get('tag/show/{id}', 'showPostController@showByTag') -> name('tag.show');

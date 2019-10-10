@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Tag;
 
 class ShowPostController extends Controller
 {
@@ -24,7 +25,7 @@ class ShowPostController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -48,6 +49,13 @@ class ShowPostController extends Controller
     {
       $post = Post::findOrFail($id);
       return view('showPost', compact('post'));
+    }
+
+    public function showByTag($id) {
+
+      $tag = Tag::findOrFail($id);
+
+      return view('tagShow', compact('tag'));
     }
 
     /**
