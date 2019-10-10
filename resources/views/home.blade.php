@@ -12,6 +12,7 @@
       <h3>{{$post -> title}}</h3>
       <p>{!! $post -> description !!}</p>
       <p>Author: {{$post -> author}}</p>
+      <p>Category: {{ $categories[($post -> category_id)-1]-> name }}</p>
       <a href="{{ route('post.show', $post -> id ) }}">Show</a>
       <a href="{{ route('post.edit', $post -> id ) }}">Edit</a>
     </div>

@@ -18,6 +18,19 @@ class AddForeignKey extends Migration
           $table -> foreign('category_id', 'categoryPost')
                  -> references('id')
                  -> on('categories');
+      });
+
+      Schema::table('post_tag', function (Blueprint $table) {
+        $table -> bigInteger('post_id') -> unsigned() -> index();
+        $table -> foreign('post_id', 'post_tag_post')
+               -> references('id')
+               -> on('posts');
+
+        $table -> bigInteger('tag_id') -> unsigned() -> index();
+        $table -> foreign('tag_id', 'post_tag_tag')
+               -> references('id')
+               -> on('tags');
+      
 
       });
     }
@@ -33,6 +46,13 @@ class AddForeignKey extends Migration
 
           $table -> dropForeign('categoryPost');
           $table -> dropColumn('category_id');
+        });
+
+        Schema::table('posts', function (Blueprint $table) {
+          $table -> dropForeign('post_tag_post');
+          $table -> dropColumn('post_id');
+          $table -> dropForeign('post_tag_tag');
+          $table -> dropColumn('tag_id');
         });
     }
 }
