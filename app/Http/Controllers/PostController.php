@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Category;
 use App\Post;
+use App\Mail\PostEdited;
 
 class PostController extends Controller
 {
@@ -90,7 +92,12 @@ class PostController extends Controller
       'description' => 'required'
       ]);
 
-      Post::whereId($id) -> update($validateData);
+      $post = Post::findOrFail($id);
+
+      $post -> update($validateData);
+
+      Mail::to('maildiprova@mail.it')->send(new PostEdited($post));
+
       return redirect('/home');
 
     }
